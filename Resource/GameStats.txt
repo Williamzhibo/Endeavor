@@ -1,0 +1,4 @@
+Enemies Killed: 0
+Jumps: 6
+Bullets Fired: 27
+Deaths: 0
