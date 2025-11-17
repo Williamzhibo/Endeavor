@@ -1,6 +1,58 @@
 # Minimalist Game Framework #
 
-This is a minimalist game framework in the style of the "game engine" we use at [Zachtronics](http://www.zachtronics.com). It is a thin layer over [SDL2](http://wiki.libsdl.org/FrontPage) that encourages you to modify and extend the framework to suit your needs and preferences.
+# Endeavor
+
+Endeavor is a 2D platformer game built with C# and the SDL2 library. This project was a journey into game development, focusing on creating a classic platforming experience with various enemies, power-ups, and levels.
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+- [.NET SDK](https://dotnet.microsoft.com/download)
+- [Homebrew](https://brew.sh/) (for macOS users)
+
+### Installation
+
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/Williamzhibo/Endeavor.git
+   cd Endeavor
+   ```
+
+2. **Run the setup script (for macOS):**
+   This will install all the necessary SDL2 libraries.
+   ```sh
+   ./setup.sh
+   ```
+
+3. **Build and run the game:**
+   ```sh
+   dotnet run
+   ```
+
+## How to Play
+
+- **Move:** Use the `<-` and `->` arrow keys to move left and right.
+- **Jump:** Press the `^` arrow key to jump.
+- **Shoot:** Click the screen to shoot projectiles.
+- **Climb:** Use the `^` and `v` arrow keys to climb ladders.
+
+The objective is to navigate through the levels, defeat enemies, and reach the end. Along the way, you'll encounter NPCs who will provide hints and power-ups to help you on your journey.
+
+## Development
+
+This project is built using C# and relies on the SDL2 library for graphics, audio, and input. The game's structure is organized into an `Engine` and `Game` directory, separating the core game engine from the game-specific logic.
+
+## Contributing
+
+Contributions are welcome! If you have any ideas, suggestions, or bug fixes, please feel free to open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
 
 # Getting Started #
 

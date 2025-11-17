@@ -76,7 +76,7 @@ class Game
 
     public StreamReader instantiatingLevel(int level)
     {
-        StreamReader reader = new StreamReader(@"Resource\tutorial.txt");
+        StreamReader reader = new StreamReader(@"Resource/tutorial.txt");
         List<String> tutorialNPC = new List<string> { "Powerups give your various boosters", "This one will let you float...", 
             "Jump into portals", "Avoid lasers and shoot at enemies by tapping screen", "Some are unreachable", "Some platforms will move...",
             "Press <- and -> to move", "Press ^ to jump","Climb up the ladder","Pay attention to the top right of your screen", 
@@ -84,7 +84,7 @@ class Game
         npcText = tutorialNPC;
         if (level == 1)
         {
-            reader = new StreamReader(@"Resource\level1.txt");
+            reader = new StreamReader(@"Resource/level1.txt");
             List<String> level1NPC = new List<string> { "Get across the city to fight the overlord and his minions", 
                 "Kill as many of the minions as possible", "We are all robots that have had our souls trapped by the overlord", "It hurts...", 
                 "You must stop the overlord" };
@@ -92,21 +92,21 @@ class Game
         }
         else if (level == 2)
         {
-            reader = new StreamReader(@"Resource\level2.txt");
+            reader = new StreamReader(@"Resource/level2.txt");
             List<String> level2NPC = new List<string> { "One more level until you reach the evil overlord", 
                 "You are one step closer to freeing our souls to heaven" };
             npcText = level2NPC;
         }
         else if (level == 3)
         {
-            reader = new StreamReader(@"Resource\level3.txt");
+            reader = new StreamReader(@"Resource/level3.txt");
             List<String> level3NPC = new List<string> { "You're trainings have prepared you well. We believe in you! Make us proud!",
                 "You've almost reached it...", "Are you prepared to fight the boss?", "Last level! You're almost there!" };
             npcText = level3NPC;
         }
         else if (level == 4)
         {
-            reader = new StreamReader(@"Resource\boss.txt");
+            reader = new StreamReader(@"Resource/boss.txt");
             List<String> bossNPC = new List<string> { "You have reached the final level! Defeat the boss and you will free our souls!" };
             npcText = bossNPC;
         }
@@ -494,5 +494,50 @@ class Game
             foreach (Bullet b in bullets) { b.update(cam, impenetrablePlatforms); }
             foreach (Bullet b in enemybullets) { b.update(cam, impenetrablePlatforms); }
         }
+    }
+
+    public void Draw()
+    {
+        // Draw all entities
+        foreach (Entity entity in stillEntities)
+        {
+            entity.draw();
+        }
+        foreach (MovingPlatform movingPlatform in movingEntities)
+        {
+            movingPlatform.draw();
+        }
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.draw();
+        }
+        foreach (ShooterEnemy shooterEnemy in shooterEnemies)
+        {
+            shooterEnemy.draw();
+        }
+        foreach (ImpenetrablePlatform impenetrablePlatform in impenetrablePlatforms)
+        {
+            impenetrablePlatform.draw();
+        }
+        foreach (Boss boss in bosses)
+        {
+            boss.draw();
+        }
+        foreach (Laser laser in lasers)
+        {
+            laser.draw();
+        }
+        foreach (Booster booster in boosters)
+        {
+            booster.draw();
+        }
+        foreach (Npc npc in npcs)
+        {
+            npc.draw();
+        }
+        player.draw();
+        playerStats.Draw(player);
+        foreach (Bullet b in bullets) { b.draw(); }
+        foreach (Bullet b in enemybullets) { b.draw(); }
     }
 }

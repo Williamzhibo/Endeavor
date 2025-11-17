@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "dgSpecHash": "ScZmaBXLF1Q=",
+  "success": true,
+  "projectFilePath": "/Users/william/Visual Studios Workspace/Highschool Projects/Endeavor/Game.csproj",
+  "expectedPackageFiles": [
+    "/Users/william/.nuget/packages/csvhelper/30.0.1/csvhelper.30.0.1.nupkg.sha512",
+    "/Users/william/.nuget/packages/system.collections.nongeneric/4.3.0/system.collections.nongeneric.4.3.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1510",
+      "level": "Warning",
+      "message": "PackageReference System.Collections.NonGeneric will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
+      "projectPath": "/Users/william/Visual Studios Workspace/Highschool Projects/Endeavor/Game.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/william/Visual Studios Workspace/Highschool Projects/Endeavor/Game.csproj",
+      "libraryId": "System.Collections.NonGeneric",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}

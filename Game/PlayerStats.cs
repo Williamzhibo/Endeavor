@@ -11,10 +11,10 @@ class PlayerStats : Entity
 
     public void update(Player player)
     {
-        draw(player);
+        Draw(player);
     }
 
-    public void draw(Player player)
+    public void Draw(Player player)
     {
         Engine.DrawRectSolid(new Bounds2(new Vector2(1180, 0), new Vector2(140,60)), color);
         // health bar

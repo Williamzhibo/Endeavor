@@ -28,7 +28,10 @@ static partial class Engine
         // Hide the console window as quickly as possible
         // ======================================================================================
 
-        ShowWindow(GetConsoleWindow(), 0);
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            ShowWindow(GetConsoleWindow(), 0);
+        }
 
         // ======================================================================================
         // Copy assets and libraries into the working directory
@@ -121,13 +124,14 @@ static partial class Engine
     private static void Run()
     {
         ulong lastFrameStartTime = SDL.SDL_GetPerformanceCounter();
+        const int TARGET_FPS = 60;
+        const float timePerFrame = 1.0f / TARGET_FPS;
 
         while (true)
         {
-            // Measure the time elapsed between one frame and the next:
-            ulong now = SDL.SDL_GetPerformanceCounter();
-            TimeDelta = (now - lastFrameStartTime) / (float)SDL.SDL_GetPerformanceFrequency();
-            lastFrameStartTime = now;
+            ulong frameStartCounter = SDL.SDL_GetPerformanceCounter();
+            TimeDelta = (frameStartCounter - lastFrameStartTime) / (float)SDL.SDL_GetPerformanceFrequency();
+            lastFrameStartTime = frameStartCounter;
 
             // Process pre-update engine logic:
             PollEvents();
@@ -147,26 +151,20 @@ static partial class Engine
             // Update game logic:
             Game.Update();
 
-            // Figure out how to scale our render target to fill the window:
-            int windowWidth, windowHeight;
-            SDL.SDL_GetWindowSize(Window, out windowWidth, out windowHeight);
-            float renderTargetScale = ((float)windowWidth / windowHeight > Game.Resolution.X / Game.Resolution.Y)
-                ? windowHeight / Game.Resolution.Y
-                : windowWidth / Game.Resolution.X;
+            // Draw game graphics:
+            Game.Draw();
 
             // Copy the render target to the screen:
             SDL.SDL_SetRenderTarget(Renderer, IntPtr.Zero);
-            SDL.SDL_SetRenderDrawColor(Renderer, 0, 0, 0, 255);
-            SDL.SDL_RenderClear(Renderer);
-            Vector2 renderTargetSize = Game.Resolution * renderTargetScale;
-            Vector2 renderTargetPos = 0.5f * (new Vector2(windowWidth, windowHeight) - renderTargetSize);
-            DrawTexture(RenderTarget, renderTargetPos, size: renderTargetSize, scaleMode: TextureScaleMode.Nearest);
-
-            // Present the screen:
+            SDL.SDL_RenderCopy(Renderer, RenderTarget.Handle, IntPtr.Zero, IntPtr.Zero);
             SDL.SDL_RenderPresent(Renderer);
 
-            // Process post-update engine logic:
-            FreeUnusedTextCacheEntries();
+            // Cap frame rate
+            float frameTime = (SDL.SDL_GetPerformanceCounter() - frameStartCounter) / (float)SDL.SDL_GetPerformanceFrequency();
+            if (frameTime < timePerFrame)
+            {
+                SDL.SDL_Delay((uint)((timePerFrame - frameTime) * 1000));
+            }
         }
     }
 
