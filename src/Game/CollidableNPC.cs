@@ -12,7 +12,7 @@ class CollidableNPC : Entity
         initialPos = new Vector2(x, y);
     }
 
-    public void update()
+    public new void update()
     {
         if (position.X >= initialPos.X + 20 && velocity.X > 0)
         {

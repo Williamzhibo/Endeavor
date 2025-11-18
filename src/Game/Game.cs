@@ -20,10 +20,9 @@ class Game
     public static float time = 0;
     public static Vector2 gameCoordinates = new Vector2(1370, 700);
     public static Camera cam = new Camera(new Vector2(0, 40), gameCoordinates);
-    public static readonly string Title = "Minimalist Game Framework";
+    public static readonly string Title = "Endeavor";
     public static readonly Vector2 Resolution = gameCoordinates;
     public static Font font = Engine.LoadFont("Retro Gaming.ttf", 11);
-    string input = "";
     int level = 0;
     public int count = 0;
 
@@ -76,7 +75,7 @@ class Game
 
     public StreamReader instantiatingLevel(int level)
     {
-        StreamReader reader = new StreamReader(@"Resource/tutorial.txt");
+        StreamReader reader = new StreamReader(@"Assets/tutorial.txt");
         List<String> tutorialNPC = new List<string> { "Powerups give your various boosters", "This one will let you float...", 
             "Jump into portals", "Avoid lasers and shoot at enemies by tapping screen", "Some are unreachable", "Some platforms will move...",
             "Press <- and -> to move", "Press ^ to jump","Climb up the ladder","Pay attention to the top right of your screen", 
@@ -84,7 +83,7 @@ class Game
         npcText = tutorialNPC;
         if (level == 1)
         {
-            reader = new StreamReader(@"Resource/level1.txt");
+            reader = new StreamReader(@"Assets/level1.txt");
             List<String> level1NPC = new List<string> { "Get across the city to fight the overlord and his minions", 
                 "Kill as many of the minions as possible", "We are all robots that have had our souls trapped by the overlord", "It hurts...", 
                 "You must stop the overlord" };
@@ -92,21 +91,20 @@ class Game
         }
         else if (level == 2)
         {
-            reader = new StreamReader(@"Resource/level2.txt");
+            reader = new StreamReader(@"Assets/level2.txt");
             List<String> level2NPC = new List<string> { "One more level until you reach the evil overlord", 
                 "You are one step closer to freeing our souls to heaven" };
             npcText = level2NPC;
         }
-        else if (level == 3)
+else if (level == 3)
         {
-            reader = new StreamReader(@"Resource/level3.txt");
-            List<String> level3NPC = new List<string> { "You're trainings have prepared you well. We believe in you! Make us proud!",
-                "You've almost reached it...", "Are you prepared to fight the boss?", "Last level! You're almost there!" };
+            reader = new StreamReader(@"Assets/level3.txt");
+            List<String> level3NPC = new List<string> { "You have reached the final level! Defeat the boss and you will free our souls!" };
             npcText = level3NPC;
         }
         else if (level == 4)
         {
-            reader = new StreamReader(@"Resource/boss.txt");
+            reader = new StreamReader(@"Assets/boss.txt");
             List<String> bossNPC = new List<string> { "You have reached the final level! Defeat the boss and you will free our souls!" };
             npcText = bossNPC;
         }
@@ -218,9 +216,12 @@ class Game
                             boosters.Add(booster);
                             break;
                         case 'N': //npc
-                            Npc npc = new Npc(npcText[npcNumber], columnNum * 32, rowNum * 32, 32, 32, 50, 50, Color.Chocolate);
-                            npcs.Add(npc);
-                            npcNumber++;
+                            if (npcNumber < npcText.Count)
+                            {
+                                Npc npc = new Npc(npcText[npcNumber], columnNum * 32, rowNum * 32, 32, 32, 50, 50, Color.Chocolate);
+                                npcs.Add(npc);
+                                npcNumber++;
+                            }
                             break;
                         /*case 'A': //wall
                             Wall wall = new Wall(columnNum * 32, rowNum * 32, 32, 32, Color.Orange);
@@ -344,36 +345,38 @@ class Game
                 return;
             }
             
+            /*
             if (Engine.GetKeyHeld(Key.F))
             {
                 if (!player.floating)
                 {
-                    input = "floating";
+                    //input = "floating";
                 }
             }
             if (Engine.GetKeyHeld(Key.Space))
             {
-                input = "long jump";
+                //input = "long jump";
             }
             if (Engine.GetKeyHeld(Key.Left)|| Engine.GetKeyHeld(Key.A))
             {
-                input = "left";
+                //input = "left";
             }
             else if (Engine.GetKeyHeld(Key.Right) || Engine.GetKeyHeld(Key.D))
             {
-                input = "right";
+                //input = "right";
             }
             if (Engine.GetKeyHeld(Key.Up) || Engine.GetKeyHeld(Key.W)) //jump
             {
-                input = "jump!";
+                //input = "jump!";
                 
             }
 
             if (Engine.GetMouseButtonDown(MouseButton.Left))
             {
-                input = "mouse click";
+                //input = "mouse click";
                 
             }
+            */
             
             /*
             //DEV TOOLS 
@@ -535,8 +538,11 @@ class Game
         {
             npc.draw();
         }
-        player.draw();
-        playerStats.Draw(player);
+        if (startScreen.startVisibility == false && controlsScreen.controlsVisibility == false && creditsScreen.creditsVisibility == false && scoreboardScreen.scoreboardVisibility == false)
+        {
+            player.draw();
+            playerStats.Draw(player);
+        }
         foreach (Bullet b in bullets) { b.draw(); }
         foreach (Bullet b in enemybullets) { b.draw(); }
     }

@@ -74,7 +74,7 @@ class bossWinScreen : winScreen
         this.hitbox = new Bounds2(new Vector2(x, y), new Vector2(length, width));
         bossWinScreenVisibility = isVisible;
     }
-    public void Update()
+    public new void Update()
     {
         if (back.isClicked())
         {
@@ -88,7 +88,7 @@ class bossWinScreen : winScreen
         }
 
     }
-    public void Draw()
+    public new void Draw()
     {
         //draws the entire screen
         Engine.DrawTexture(gameScreens, new Vector2(0, 0), source: gameScreensTextureBounds, size: gameScreensResolution, mirror: mirrorbackground);

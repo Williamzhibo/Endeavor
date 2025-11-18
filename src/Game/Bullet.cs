@@ -67,7 +67,7 @@ class Bullet : Entity
         }
     }
 
-    public void draw()
+    public override void draw()
     {
         Engine.DrawTexture(WorldSprites, new Vector2(position.X - Game.cam.position.X, position.Y - Game.cam.position.Y), source: bulletBounds, size: new Vector2(size.X, size.Y));
     }

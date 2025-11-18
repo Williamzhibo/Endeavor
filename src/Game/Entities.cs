@@ -17,7 +17,6 @@ class Entity
     public Color color;
     public Vector2 position;
     public Vector2 velocity = new Vector2(0,0);
-    public Vector2 previousv;
     public Vector2 size;
     public Boolean dead = false;
 
@@ -132,7 +131,7 @@ class MovingPlatform : Entity
         initialPos = new Vector2(x, y);
     }
 
-    public void update()
+    public new void update()
     {
         if (position.X >= initialPos.X + 60 && velocity.X > 0)
         {
@@ -179,7 +178,7 @@ class Ladder : Entity
     {
         colliding = b;
     }
-    public void update()
+    public new void update()
     {
         hitbox = new Bounds2(position, size);
         position += velocity;
@@ -276,7 +275,7 @@ class LosingBlock : WinLoseBlock
     {
     }
 
-    public void update()
+    public new void update()
     {
         if (Game.cam.inCamera(position, size))
         {
@@ -302,7 +301,7 @@ class Laser : Entity
     {
     }
 
-    public void update()
+    public new void update()
     {
         hitbox = new Bounds2(position, size);
         position += velocity;
@@ -350,7 +349,7 @@ class ImpenetrablePlatform : Entity
     {
     }
 
-    public void update()
+    public new void update()
     {
         if (Game.cam.inCamera(position, size))
         {
@@ -358,7 +357,7 @@ class ImpenetrablePlatform : Entity
         }
     }
 
-    public void draw()
+    public new void draw()
     {
         Engine.DrawTexture(WorldSprites, new Vector2(position.X - Game.cam.position.X, position.Y - Game.cam.position.Y), source: impenetrableBounds, size: new Vector2(size.X, size.Y));
     }
@@ -375,7 +374,7 @@ class Booster : Entity
     {
     }
 
-    public void update()
+    public new void update()
     {
         if (Game.cam.inCamera(position, size))
         {
@@ -383,7 +382,7 @@ class Booster : Entity
         }
     }
 
-    public void draw()
+    public new void draw()
     {
         if (armor)
         {
@@ -403,7 +402,7 @@ class Armor : Booster
         armor = true;
     }
 
-    public void update()
+    public new void update()
     {
         if (Game.cam.inCamera(position, size))
         {

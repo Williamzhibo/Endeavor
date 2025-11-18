@@ -11,7 +11,7 @@ class Enemy : CollidableNPC
 
     Bounds2 enemyBounds = new Bounds2(32 * 0, 0, 32, 32);
     TextureMirror mirrorEnemy = TextureMirror.None;
-    public Boolean dead;
+    public new Boolean dead;
     private int countTicksHurt;
 
     public Enemy(float x, float y, float length, float width, Color color) : base(x, y, length, width, color)
@@ -30,7 +30,7 @@ class Enemy : CollidableNPC
         Engine.PlaySound(enemyDeathSound);
     }
 
-    public void update()
+    public new void update()
     {
 
         foreach (Bullet bullet in Game.bullets)

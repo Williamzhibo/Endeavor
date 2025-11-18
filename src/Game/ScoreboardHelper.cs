@@ -33,7 +33,7 @@ public class ScoreboardHelper
         string line;
         try
         {
-            reader = new StreamReader("../../../Resource/GameStats.txt");
+            reader = new StreamReader("Assets/GameStats.txt");
 
             line = reader.ReadLine();
             int index = 0;
@@ -49,7 +49,7 @@ public class ScoreboardHelper
 
             reader.Close();
         }
-        catch(Exception e)
+        catch(Exception)
         {
             Console.WriteLine($"A Reading Error Occured");
         }
@@ -61,8 +61,8 @@ public class ScoreboardHelper
         
         try
         {
-            File.Create("../../../Resource/GameStats.txt").Close();
-            using (StreamWriter sw = new StreamWriter("../../../Resource/GameStats.txt", true))
+            // Use false to overwrite the file instead of appending
+            using (StreamWriter sw = new StreamWriter("Assets/GameStats.txt", false))
             {
                 int index = 0;
                 foreach (string line in statDescription)
@@ -72,12 +72,10 @@ public class ScoreboardHelper
                     
                     index++;
                 }
-
-                ;
                 sw.Close();
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             Console.WriteLine($"An error occured:");
         }

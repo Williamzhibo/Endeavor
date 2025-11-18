@@ -8,10 +8,9 @@ class Player : Entity
     public Sound jumpSound = Engine.LoadSound("jump.wav");
     Sound playerShootSound = Engine.LoadSound("playerShoot.wav");
     Sound playerDeathSound = Engine.LoadSound("playerDeath.wav");
-    Sound playerHurtSound = Engine.LoadSound("playerHurtSound.wav");
+    public Sound playerHurtSound = Engine.LoadSound("playerHurtSound.wav");
     
     public float playerFrameIndex = 0;
-    public int playerHurtIndex;
 
     Boolean canJump = true;
     Boolean onLadder = false;
@@ -55,7 +54,7 @@ class Player : Entity
         
     }
     
-    public void update()
+    public new void update()
 
     {
         parallax1.Update(position);
@@ -166,7 +165,6 @@ class Player : Entity
             magnitude = (float)Math.Sqrt((xDistance * xDistance) + (yDistance * yDistance));
             float bulletUnitVelocityX = (float)(xDistance / magnitude) * 4;
             float bulletUnitVelocityY = (float)(yDistance / magnitude) * 4;
-            float bulletSpeed = 50;
 
             Game.bullets.Add(new Bullet(position.X, position.Y, 5, 5, bulletUnitVelocityX, bulletUnitVelocityY, Color.Brown, true));
             Engine.PlaySound(playerShootSound);
@@ -304,7 +302,7 @@ class Player : Entity
         }
     }
 
-    public void draw()
+    public override void draw()
     {
         //is framerate (10) correct?
         if (velocity.X == 0)

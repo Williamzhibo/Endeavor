@@ -13,7 +13,6 @@ class Boss : ShooterEnemy
     private int countTicksHurt;
     private int health = 100;
     public Boolean collidesWithBullet = false;
-    private Boolean isBulletFired = false;
 
     public float bossFrameIndex = 0;
     public TextureMirror mirrorBoss;
@@ -26,7 +25,7 @@ class Boss : ShooterEnemy
         countTicksHurt = 0;
     }
 
-    public void update(Player player)
+    public new void update(Player player)
     {
         //boss only
         //shooter enemy
@@ -122,7 +121,7 @@ class Boss : ShooterEnemy
         playShootSound();
     }
 
-    public void draw()
+    public override void draw()
     {
         if (velocity.X > 0)
         {

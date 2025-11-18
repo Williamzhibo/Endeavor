@@ -9,7 +9,6 @@ class clickableButton
     Color color;
     Color fontColor = Color.White;
     public Font buttonFont;
-    int fontSize;
     public clickableButton(float x, float y, float length, float width, Color color, string text)
     {
         this.text = text;

@@ -1,6 +1,6 @@
-# Minimalist Game Framework #
-
 # Endeavor
+
+[![Endeavor Gameplay](/Docs/assets/endeavor.png)](https://drive.google.com/file/d/1q1sXsksfKmtApsG6ENf4zzJCNCSaaJip/view?usp=sharing)
 
 Endeavor is a 2D platformer game built with C# and the SDL2 library. This project was a journey into game development, focusing on creating a classic platforming experience with various enemies, power-ups, and levels.
 
@@ -10,8 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- [.NET SDK](https://dotnet.microsoft.com/download)
-- [Homebrew](https://brew.sh/) (for macOS users)
+- [.NET SDK](httpss://dotnet.microsoft.com/download)
 
 ### Installation
 
@@ -21,13 +20,7 @@ These instructions will get you a copy of the project up and running on your loc
    cd Endeavor
    ```
 
-2. **Run the setup script (for macOS):**
-   This will install all the necessary SDL2 libraries.
-   ```sh
-   ./setup.sh
-   ```
-
-3. **Build and run the game:**
+2. **Build and run the game:**
    ```sh
    dotnet run
    ```
